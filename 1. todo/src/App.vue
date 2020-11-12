@@ -1,15 +1,18 @@
 <template>
   <div id="app" class="container">
     <h1 class="text-center">Todo App</h1>
-    <input v-model="todoText" @keyup.enter="addTodo" type="text" class="w-100 p-2" placeholder="Type todo">
+    <CompletedTodo
+    :todos="todos" 
+    />
+    <AddTodo 
+    @add-todo="addTodo"
+    />
     <hr>
     <div class="alert alert-warning alert-dismissible fade show" role="alert" :style="{display: displayAlert}">
       <strong>!경고</strong> 입력란에 글이 입력되지 않았습니다.
     </div>
-    <Todo 
-    v-for="todo in todos" 
-    :key="todo.id" 
-    :todo="todo" 
+    <TodoList 
+    :todos="todos"
     @toggle-checkbox="toggleCheckbox"
     @click-delete="deleteTodo"
     />
@@ -17,11 +20,15 @@
 </template>
 
 <script>
-import Todo from '@/components/Todo.vue';
+import TodoList from '@/components/TodoList';
+import AddTodo from '@/components/AddTodo';
+import CompletedTodo from '@/components/CompletedTodo';
 
 export default {
   components: {
-    Todo
+    TodoList,
+    AddTodo,
+    CompletedTodo
   },
   data() {
     return {
@@ -34,13 +41,14 @@ export default {
     }
   },
   methods: {
-    addTodo(e){
-      if(e.target.value == ''){
+    addTodo(value){
+      console.log(value)
+      if(value == ''){
         this.displayAlert = 'block'
       }else{
         this.todos.push({
           id: Math.random(),
-          text: e.target.value,
+          text: value,
           checked: false
         })
         this.todoText = '';
