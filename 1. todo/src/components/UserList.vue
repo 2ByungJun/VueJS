@@ -8,11 +8,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     computed: {
-        users() {
-            return this.$store.state.users;
-        }
+        ...mapState([
+            'users',
+            'todos'
+        ])
     },
     methods: {
         getUsers(){
