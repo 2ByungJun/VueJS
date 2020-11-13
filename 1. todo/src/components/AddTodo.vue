@@ -27,7 +27,7 @@ export default {
             if(!this.todoText){
                 this.displayAlert = 'block';
             }else{
-                this.$store.dispatch('addTodo', e.target.value);
+                this.$store.dispatch('todo/addTodo', e.target.value);
                 this.todoText = '';
             }
         }

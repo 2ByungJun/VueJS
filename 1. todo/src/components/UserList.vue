@@ -15,15 +15,13 @@ export default {
         this.getUsers();
     },
     computed: {
-        ...mapState([
-            'users',
-            {people: 'users'}
-        ])
+        ...mapState( 'user', {
+            users: state => state.users
+        })
+        //...mapState('user', ['users'])
     },
     methods: {
-        ...mapActions([
-            'getUsers'
-        ])
+        ...mapActions('user', ['getUsers'])
     }
 }
 </script>
