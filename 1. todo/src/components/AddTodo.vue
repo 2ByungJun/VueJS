@@ -7,6 +7,10 @@
       placeholder="Type todo"
       @keyup.enter="addTodo" 
       >
+      <hr>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" :style="{ display : displayAlert }">
+      <strong>!경고</strong> 입력란에 글이 입력되지 않았습니다.
+    </div>
   </div>
 </template>
 
@@ -14,12 +18,18 @@
 export default {
     data(){
         return {
-            todoText: ''
+            todoText: '',
+            displayAlert: 'none'
         }
     },
     methods: {
         addTodo(e){
-            this.$emit('add-todo', e.target.value);
+            if(!this.todoText){
+                this.displayAlert = 'block';
+            }else{
+                this.$store.dispatch('addTodo', e.target.value);
+                this.todoText = '';
+            }
         }
     }
 }
