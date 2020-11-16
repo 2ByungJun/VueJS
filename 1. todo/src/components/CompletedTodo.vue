@@ -1,6 +1,6 @@
 <template>
     <div>
-        Completed Todo : {{ numberOfCompletedTodo }}
+        <span>완료 횟수 : {{ numberOfCompletedTodo }}</span>
     </div>
 </template>
 
