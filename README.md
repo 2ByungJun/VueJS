@@ -1,6 +1,6 @@
 # Vue
 
-## Vue 이론메모
+## Vue 이론메모장
 
 - axios
 - bundle
